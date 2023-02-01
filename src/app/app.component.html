@@ -1,0 +1,25 @@
+<main>
+  <h1>Password tester</h1>
+  <h2>Check the strength of your password!</h2>
+  <input [type]="passVisible ? 'text' : 'password' " [(ngModel)]="password" (ngModelChange)="onPassChange()"
+         placeholder="Enter your password here..."/>
+  <div class="secLine">
+    <div class="sec"
+         [ngStyle]="{'border-color': secNumber === -1 ? shortPassColor : secNumber > 0 ? secColor : secDisabledColor}">
+    </div>
+    <div class="sec"
+         [ngStyle]="{'border-color': secNumber === -1 ? shortPassColor : secNumber > 1 ? secColor : secDisabledColor}">
+    </div>
+    <div class="sec"
+         [ngStyle]="{'border-color': secNumber === -1 ? shortPassColor : secNumber > 2 ? secColor : secDisabledColor}">
+    </div>
+  </div>
+  <div class="utility">
+    <div class="opinion">
+      <p *ngIf="secNumber !== 0">{{ secNumber === -1 ? 'Your password is too short!' : 'Your password is: '}}</p>
+      <p *ngIf="secNumber > 0" [ngStyle]="{'color': secColor}">{{ secOpinion }}</p>
+    </div>
+    <button (click)="toggleHandler()">Toggle visibility</button>
+  </div>
+  <p id="tip">Tip: Try using symbols and letters for better effect</p>
+</main>
